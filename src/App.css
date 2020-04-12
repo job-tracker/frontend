@@ -1,4 +1,13 @@
 .App {
 	text-align: center;
 	padding: 0.5rem 5rem;
+	height: 100vh;
+	width: 100vw;
+	background: rgb(47, 54, 56);
+	background: linear-gradient(
+		180deg,
+		rgba(47, 54, 56, 1) 0%,
+		rgba(196, 196, 196, 1) 100%
+	);
+	font-size: 62.5%;
 }
