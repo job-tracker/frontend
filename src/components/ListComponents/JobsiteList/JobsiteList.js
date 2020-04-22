@@ -4,7 +4,7 @@ import { Table } from 'reactstrap';
 
 import './JobsiteList.scss';
 
-import { Job_List } from '../../TempData/TempData';
+import Job_List from '../../../TempData/TempJobData.js';
 
 class JobsiteList extends Component {
 	constructor() {

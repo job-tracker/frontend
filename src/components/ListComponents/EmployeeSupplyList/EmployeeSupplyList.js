@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Table } from 'reactstrap';
 
 import './EmployeeSupplyList.scss';
-import { HD_List } from '../../TempData/TempData.js';
+import HD_List from '../../../TempData/TempSupplyListData.js';
 
 class EmployeeSupplyList extends Component {
 	constructor() {
