@@ -22,9 +22,9 @@ class EmployeeSupplyList extends Component {
 					<button className="list-btn">Make a list</button>
 				</div>
 				<div className="list-wrapper">
-					{this.state.hdList.map((jobs, i) => (
+					{this.state.hdList.map((supLists, i) => (
 						<div key={i}>
-							<h3 className="list-name">{jobs.name}</h3>
+							<h3 className="list-name">{supLists.name}</h3>
 							<Table dark hover responsive className="supply-table">
 								<thead>
 									<tr>
@@ -33,7 +33,7 @@ class EmployeeSupplyList extends Component {
 									</tr>
 								</thead>
 								<tbody>
-									{jobs.list.map((lists, i) => (
+									{supLists.list.map((lists, i) => (
 										<tr key={i}>
 											<td>{lists.item}</td>
 											<td>{lists.qty}</td>
