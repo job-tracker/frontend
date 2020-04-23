@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import './JobsiteView.scss';
 
+import JobsiteHeader from '../../components/JobsiteComponents/JobsiteHeader.js';
 import BuildingNotesList from '../../components/ListComponents/Notes/BuildingNotesList.js';
 import TaskList from '../../components/ListComponents/TaskList/TaskList.js';
 
@@ -9,6 +10,7 @@ class JobsiteView extends Component {
 	render() {
 		return (
 			<div className="main-jobsite-wrapper">
+				<JobsiteHeader />
 				<section className="main-note-task-wrapper">
 					<div className="top-task-wrapper">
 						<div className="notes-wrapper">
