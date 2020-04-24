@@ -20,8 +20,10 @@ class JobsiteHeader extends Component {
 				</div>
 				<div className="employee-id-wrapper">
 					{/* these will need to be dynamic */}
-					<h1>Employee ID#</h1>
-					<h1 className="employee-id">4321</h1>
+					<h1>Tracking#</h1>
+					<h1 className="employee-id">
+						{this.state.jobList[0].tracking_number}
+					</h1>
 				</div>
 			</section>
 		);

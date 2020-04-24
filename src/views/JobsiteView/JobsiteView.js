@@ -5,6 +5,7 @@ import './JobsiteView.scss';
 import JobsiteHeader from '../../components/JobsiteComponents/JobsiteHeader.js';
 import BuildingNotesList from '../../components/ListComponents/Notes/BuildingNotesList.js';
 import TaskList from '../../components/ListComponents/TaskList/TaskList.js';
+import MilestoneTaskList from '../../components/ListComponents/TaskList/MilestoneTaskList.js';
 
 class JobsiteView extends Component {
 	render() {
@@ -20,7 +21,9 @@ class JobsiteView extends Component {
 							<TaskList />
 						</div>
 					</div>
-					<div className="bot-task-wrapper"></div>
+					<div className="bot-task-wrapper">
+						<MilestoneTaskList />
+					</div>
 				</section>
 			</div>
 		);
