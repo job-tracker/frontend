@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 import './JobsiteView.scss';
 
 import JobsiteHeader from '../../components/JobsiteComponents/JobsiteHeader.js';
-import BuildingNotesList from '../../components/ListComponents/Notes/BuildingNotesList.js';
-import TaskList from '../../components/ListComponents/TaskList/TaskList.js';
-import MilestoneTaskList from '../../components/ListComponents/TaskList/MilestoneTaskList.js';
+import BuildingNotesList from '../../components/Lists/NoteList/BuildingNotesList.js';
+import TaskList from '../../components/Lists/TaskList/TaskList.js';
+import BuildingList from '../../components/Lists/BuildingList/BuildingList.js';
 
 class JobsiteView extends Component {
   render() {
@@ -22,7 +22,7 @@ class JobsiteView extends Component {
             </div>
           </div>
           <div className="bot-task-wrapper">
-            <MilestoneTaskList />
+            <BuildingList />
           </div>
         </section>
       </div>

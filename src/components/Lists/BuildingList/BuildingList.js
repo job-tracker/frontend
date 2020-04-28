@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 
 import { Table } from 'reactstrap';
 
-import './TaskList.scss';
+import './BuildingList.scss';
 
 import Task_List from '../../../TempData/TempTaskData.js';
 
-class MilestoneTaskList extends Component {
+class BuildingList extends Component {
   constructor() {
     super();
     this.state = {
@@ -37,4 +37,4 @@ class MilestoneTaskList extends Component {
   }
 }
 
-export default MilestoneTaskList;
+export default BuildingList;

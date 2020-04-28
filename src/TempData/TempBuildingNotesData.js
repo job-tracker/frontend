@@ -1,8 +1,8 @@
-const Building_Notes_List = [
+const Buildings_List = [
   {
     id: 1,
     name: 'Building G',
-    unit: '103',
+    images: '',
     notes: [
       {
         id: 1,
@@ -13,26 +13,48 @@ const Building_Notes_List = [
         note: 'Sparky fixing non-working outlets by friday 2/28/2020.',
       },
     ],
+    floors: [
+      {
+        id: 1,
+        name: '1',
+        units: [
+          {
+            id: 1,
+            name: '101',
+            notes: 'Broken dishwasher',
+          },
+        ],
+      },
+    ],
   },
   {
     id: 2,
-    name: 'Building F',
-    unit: '103',
+    name: 'Building A',
+    images: '',
     notes: [
       {
         id: 1,
-        note: 'Finish flooring',
+        note: 'Buried coax outlet.',
       },
       {
         id: 2,
-        note: 'Wall Damage in master bedroom closet',
+        note: 'Cable guy fixing non-working outlets by friday 2/28/2020.',
       },
+    ],
+    floors: [
       {
-        id: 3,
-        note: 'Range not functioning properly',
+        id: 1,
+        name: '1',
+        units: [
+          {
+            id: 1,
+            name: '101',
+            notes: 'fan dishwasher',
+          },
+        ],
       },
     ],
   },
 ];
 
-export default Building_Notes_List;
+export default Buildings_List;

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import './EmployeeView.scss';
 
 import EmployeeCreds from '../../components/EmployeeComponents/EmployeeCreds.js';
-import EmployeeSupplyList from '../../components/ListComponents/EmployeeSupplyList/EmployeeSupplyList.js';
+import EmployeeSupplyList from '../../components/Lists/EmployeeSupplyList/EmployeeSupplyList.js';
 import JobsiteList from '../../components/ListComponents/JobsiteList/JobsiteList.js';
 
 class EmployeeView extends Component {
