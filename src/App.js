@@ -10,14 +10,14 @@ import JobsiteView from './views/JobsiteView/JobsiteView';
 import './App.css';
 
 function App() {
-	return (
-		<div className="App">
-			<section className="main-header-wrapper">
-				<Header />
-			</section>
-			<JobsiteView />
-		</div>
-	);
+  return (
+    <div className="App">
+      <section className="main-header-wrapper">
+        <Header />
+      </section>
+      <JobsiteView />
+    </div>
+  );
 }
 
 export default App;
