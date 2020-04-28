@@ -5,7 +5,7 @@ import { Table } from 'reactstrap';
 import './BuildingNotesList.scss';
 
 import Building_Notes_List from '../../../TempData/TempBuildingNotesData.js';
-import Button from '../../Buttons/Button.js';
+import ListHeader from '../../ListComponents/ListHeader/ListHeader.js';
 
 class BuildingNotesList extends Component {
   constructor() {
@@ -18,10 +18,7 @@ class BuildingNotesList extends Component {
   render() {
     return (
       <section className="job-task-list-wrapper">
-        <div className="task-list-header">
-          <h2>Notes</h2>
-          <Button title="Add a note" />
-        </div>
+        <ListHeader headerTitle="Notes" btnTitle="Make a Note" />
         <div className="task-list-wrapper">
           {this.state.buildingNotesList.map((buildings, i) => (
             <div key={i}>
