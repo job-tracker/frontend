@@ -6,6 +6,8 @@ import './TaskList.scss';
 
 import Task_List from '../../../TempData/TempTaskData.js';
 
+import ListHeader from '../../ListComponents/ListHeader/ListHeader.js';
+import ListItem from '../../ListComponents/ListItem/ListItem.js';
 class TaskList extends Component {
   constructor() {
     super();
@@ -18,8 +20,7 @@ class TaskList extends Component {
     return (
       <section className="job-task-list-wrapper">
         <div className="task-list-header">
-          <h2>Daily Tasks</h2>
-          <button className="task-list-btn">Make a list</button>
+          <ListHeader headerTitle={'Daily Tasks'} btnTitle={'Add a Task'} />
         </div>
         <div className="task-list-wrapper">
           <Table dark hover responsive className="task-table">

@@ -36,8 +36,8 @@ class BuildingNotesList extends Component {
                     </tr>
                   ))}
                   <div className="btn-wrapper">
-                    <Button title={'Edit'} />
-                    <Button title={'Clear'} />
+                    <Button title={'Edit'} size={'sm'} />
+                    <Button title={'Clear Completed'} size={'sm'} />
                   </div>
                 </tbody>
               </Table>
