@@ -1,0 +1,11 @@
+.list-wrapper {
+  background-color: #343a40;
+  overflow-y: auto;
+  max-height: 30rem;
+
+  .btn-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 2rem;
+  }
+}

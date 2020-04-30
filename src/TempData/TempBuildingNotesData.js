@@ -13,19 +13,6 @@ const Buildings_List = [
         note: 'Sparky fixing non-working outlets by friday 2/28/2020.',
       },
     ],
-    floors: [
-      {
-        id: 1,
-        name: '1',
-        units: [
-          {
-            id: 1,
-            name: '101',
-            notes: 'Broken dishwasher',
-          },
-        ],
-      },
-    ],
   },
   {
     id: 2,
@@ -39,19 +26,6 @@ const Buildings_List = [
       {
         id: 2,
         note: 'Cable guy fixing non-working outlets by friday 2/28/2020.',
-      },
-    ],
-    floors: [
-      {
-        id: 1,
-        name: '1',
-        units: [
-          {
-            id: 1,
-            name: '101',
-            notes: 'fan dishwasher',
-          },
-        ],
       },
     ],
   },

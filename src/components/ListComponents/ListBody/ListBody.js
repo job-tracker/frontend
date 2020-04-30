@@ -3,6 +3,7 @@ import React from 'react';
 import './ListBody.scss';
 
 import { Table } from 'reactstrap';
+import ListItem from '../ListItem/ListItem.js';
 
 const ListBody = ({ name, building }) => {
   return (
@@ -17,7 +18,7 @@ const ListBody = ({ name, building }) => {
       <tbody>
         {building.floors.map((task, i) => (
           <tr key={i}>
-            <td>{task.task}</td>
+            <ListItem />
           </tr>
         ))}
         <div>
