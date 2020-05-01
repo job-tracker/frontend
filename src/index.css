@@ -1,14 +1,23 @@
+* {
+  box-sizing: border-box;
+}
+
 html {
-  height: 100%;
-  width: 100%;
+  min-height: 100%;
 }
 
 body {
+  height: 100%;
   margin: 0;
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 1.6rem;
+  background: linear-gradient(
+    180deg,
+    rgba(47, 54, 56, 1) 0%,
+    rgba(196, 196, 196, 1) 100%
+  );
 }
 
 code {

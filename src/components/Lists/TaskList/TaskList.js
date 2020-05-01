@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import { Table } from 'reactstrap';
 
@@ -8,34 +8,27 @@ import Task_List from '../../../TempData/TempTaskData.js';
 
 import ListHeader from '../../ListComponents/ListHeader/ListHeader.js';
 import ListItem from '../../ListComponents/ListItem/ListItem.js';
-class TaskList extends Component {
-  constructor() {
-    super();
-    this.state = {
-      taskList: Task_List,
-    };
-  }
+const TaskList = () => {
+  const [taskList, setTaskList] = useState(Task_List);
 
-  render() {
-    return (
-      <section className="job-task-list-wrapper">
-        <div className="task-list-header">
-          <ListHeader headerTitle={'Daily Tasks'} btnTitle={'Add a Task'} />
-        </div>
-        <div className="task-list-wrapper">
-          <Table dark hover responsive className="task-table">
-            <tbody>
-              {this.state.taskList.map((task, i) => (
-                <tr key={i}>
-                  <td>{task.task}</td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
-        </div>
-      </section>
-    );
-  }
-}
+  return (
+    <section className="task-list-wrapper">
+      <div className="task-list-header">
+        <ListHeader headerTitle={'Daily Tasks'} btnTitle={'Add a Task'} />
+      </div>
+      <div className="list-wrapper">
+        <Table dark hover responsive className="task-table">
+          <tbody>
+            {taskList.map((task, i) => (
+              <tr key={i}>
+                <ListItem item={task.task} />
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div>
+    </section>
+  );
+};
 
 export default TaskList;

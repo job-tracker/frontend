@@ -15,14 +15,14 @@ class JobsiteView extends Component {
         <section className="main-note-task-wrapper">
           <div className="top-task-wrapper">
             <div className="notes-wrapper">
-              <BuildingList />
-            </div>
-            <div className="daily-task-wrapper">
               <BuildingNotesList />
             </div>
-          </div>
-          <div className="bot-task-wrapper">
-            <TaskList />
+            <div className="daily-task-wrapper">
+              <TaskList />
+            </div>
+            <div className="bot-task-wrapper">
+              <BuildingList />
+            </div>
           </div>
         </section>
       </div>
