@@ -4,24 +4,28 @@ import { Table } from 'reactstrap';
 
 import './ServiceRoomList.scss';
 
-import Unit_List from '../../../TempData/TempUnitData.js';
+import Service_List from '../../../TempData/TempServiceData';
 
 import ListHeader from '../../ListComponents/ListHeader/ListHeader.js';
-import Unit from '../../BuildingComponents/Unit.js';
+import ServiceRoom from '../../BuildingComponents/ServiceRoom.js';
 
-const UnitList = () => {
-  const [unitList, setUnitList] = useState(Unit_List);
+const ServiceRoomList = () => {
+  const [serviceList, setServiceList] = useState(Service_List);
   return (
-    <section className="unit-list-wrapper">
-      <div className="unit-list-header">
-        <ListHeader headerTitle={'Units'} btnTitle={'Add a Unit'} />
+    <section className="service-room-list-wrapper">
+      <div className="service-list-header">
+        <ListHeader headerTitle={'Service Rooms'} btnTitle={'Add a Room'} />
       </div>
-      <div className="unit-list-wrapper">
-        <Table dark hover responsive className="unit-table">
+      <div className="service-list-wrapper">
+        <Table dark hover responsive className="service-table">
           <tbody>
-            {unitList.map((unit, i) => (
+            {serviceList.map((room, i) => (
               <tr key={i}>
-                <Unit name={unit.name} />
+                <ServiceRoom
+                  name={room.name}
+                  floor={room.floor_id}
+                  notes={room.notes.note}
+                />
               </tr>
             ))}
           </tbody>
@@ -31,4 +35,4 @@ const UnitList = () => {
   );
 };
 
-export default UnitList;
+export default ServiceRoomList;

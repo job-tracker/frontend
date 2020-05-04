@@ -5,6 +5,7 @@ import './BuildingView.scss';
 import JobsiteHeader from '../../components/JobsiteComponents/JobsiteHeader.js';
 import BuildingNotesList from '../../components/Lists/NoteList/BuildingNotesList.js';
 import UnitList from '../../components/Lists/UnitList/UnitList.js';
+import ServiceList from '../../components/Lists/ServiceRoomList/ServiceRoomList.js';
 
 const BuildingView = () => {
   return (
@@ -18,7 +19,9 @@ const BuildingView = () => {
           <div className="daily-task-wrapper">
             <UnitList />
           </div>
-          <div className="bot-task-wrapper"></div>
+          <div className="bot-task-wrapper">
+            <ServiceList />
+          </div>
         </div>
       </section>
     </div>
