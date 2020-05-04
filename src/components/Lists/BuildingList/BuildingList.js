@@ -4,12 +4,13 @@ import { Table } from 'reactstrap';
 
 import './BuildingList.scss';
 
-import Task_List from '../../../TempData/TempTaskData.js';
+import Building_List from '../../../TempData/TempBuildingNotesData.js';
 
 import ListHeader from '../../ListComponents/ListHeader/ListHeader.js';
+import Building from '../../BuildingComponents/Building.js';
 
 const BuildingList = () => {
-  const [taskList, setTaskList] = useState(Task_List);
+  const [buildingList, setBuildingList] = useState(Building_List);
   return (
     <section className="building-list-wrapper">
       <div className="building-list-header">
@@ -18,9 +19,9 @@ const BuildingList = () => {
       <div className="building-list-wrapper">
         <Table dark hover responsive className="building-table">
           <tbody>
-            {taskList.map((task, i) => (
+            {buildingList.map((building, i) => (
               <tr key={i}>
-                <td>{task.task}</td>
+                <Building name={building.name} />
               </tr>
             ))}
           </tbody>
