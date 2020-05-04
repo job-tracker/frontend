@@ -5,7 +5,6 @@ import './BuildingView.scss';
 import JobsiteHeader from '../../components/JobsiteComponents/JobsiteHeader.js';
 import BuildingNotesList from '../../components/Lists/NoteList/BuildingNotesList.js';
 import UnitList from '../../components/Lists/UnitList/UnitList.js';
-import BuildingList from '../../components/Lists/BuildingList/BuildingList.js';
 
 const BuildingView = () => {
   return (
