@@ -10,7 +10,7 @@ const JobsiteHeader = () => {
     <section className="employee-creds-wrapper">
       <div className="employee-name">
         <h1>{jobList[0].name}</h1>
-        <h3>{jobList[0].address}</h3>
+        <h3 className="address">{jobList[0].address}</h3>
       </div>
       <div className="employee-id-wrapper">
         {/* these will need to be dynamic */}

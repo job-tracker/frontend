@@ -10,14 +10,14 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+// const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
-  <Provider store={store}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </Provider>,
+  // <Provider store={store}>
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  // </Provider>,
   document.getElementById('root')
 );
 
