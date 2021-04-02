@@ -1,4 +1,21 @@
 .header-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+
+  .left-nav-buttons-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 25%;
+  }
+
+  .right-nav-buttons-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 25%;
+  }
+
   a {
     text-decoration: none;
     color: #ffffff;

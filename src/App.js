@@ -6,6 +6,7 @@ import LandingPage from './views/LandingPage/LandingPage';
 import EmployeeView from './views/EmployeeView/EmployeeView';
 import JobsiteView from './views/JobsiteView/JobsiteView';
 import BuildingView from './views/BuildingView/BuildingView.js';
+import UnitView from './views/UnitView/UnitView.js';
 
 // Styling
 import './App.css';

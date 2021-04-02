@@ -1,0 +1,15 @@
+.main-unit-wrapper {
+  .main-note-task-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    padding-top: 3rem;
+
+    .top-task-wrapper {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+}
