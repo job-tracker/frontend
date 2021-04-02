@@ -16,7 +16,7 @@ function App() {
       <section className="main-header-wrapper">
         <Header />
       </section>
-      <BuildingView />
+      <JobsiteView />
     </div>
   );
 }
