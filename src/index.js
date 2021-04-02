@@ -1,9 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import rootReducer from './reducers';
+
+// Redux to be added later
+// import { Provider } from 'react-redux';
+// import { createStore, applyMiddleware } from 'redux';
+// import thunk from 'redux-thunk';
+// import rootReducer from './reducers';
+
 import 'normalize.css/normalize.css';
 import './index.css';
 import App from './App';
