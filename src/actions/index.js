@@ -213,3 +213,54 @@ export const deleteBuilding = buildingId => dispatch => {
 			dispatch({ type: DELETE_BUILDING_FAILURE });
 		});
 };
+
+// Floor
+
+export const fetchFloor = () => dispatch => {
+	dispatch({ type: FETCH_FLOOR_START });
+	const jobsiteId = JSON.parse(localStorage.jobsite).id;
+	return axios
+		.get(`${envVarPage}/api/user/jobsites/${jobsiteId}/buildings/floors`)
+		.then(res => {
+			dispatch({ type: FETCH_FLOOR_SUCCESS });
+		})
+		.catch(err => {
+			dispatch({ type: FETCH_FLOOR_FAILURE });
+		});
+};
+
+export const updateFloor = floor => dispatch => {
+	dispatch({ type: UPDATE_FLOOR_START });
+	const { jobsiteId } = JSON.parse(localStorage.jobsite);
+	const { buildingId } = JSON.parse(localStorage.building);
+	const { floorId } = JSON.parse(localStorage.floor);
+	return axios({
+		method: 'put',
+		url: `${envVarPage}/api/user/jobsites/${jobsiteId}/buildings/${buildingId}/floors/${floorId}`,
+		data: floor,
+		headers: {
+			Authorization: localStorage.token,
+		},
+	})
+		.then(res => {
+			localStorage.setItem('floor', JSON.stringify(res.data));
+			dispatch({ type: UPDATE_FLOOR_SUCCESS });
+		})
+		.catch(err => dispatch({ type: UPDATE_FLOOR_FAILURE }));
+};
+
+export const deleteFloor = floorId => dispatch => {
+	dispatch({ type: DELETE_FLOOR_START });
+	const jobsiteId = JSON.parse(localStorage.jobsite).id;
+	const buildingId = JSON.parse(localStorage.building).id;
+	return axios
+		.delete(
+			`${envVarPage}/api/user/jobsites/${jobsiteId}/buildings/${buildingId}/floors/${floorId}`
+		)
+		.then(res => {
+			dispatch({ type: DELETE_FLOOR_SUCCESS });
+		})
+		.catch(err => {
+			dispatch({ type: DELETE_FLOOR_FAILURE });
+		});
+};
