@@ -70,3 +70,30 @@ export const UPDATE_UNIT_FAILURE = 'UPDATE_UNIT_FAILURE';
 
 // Environment var
 const envVarPage = process.env.REACT_APP_BACKEND_BASE_URL;
+
+// Functions for the actions
+
+// Employee
+export const fetchEmployee = employeeId => dispatch => {
+	dispatch({ type: FETCH_EMPLOYEE_START });
+	return axios
+		.get(`${envVarPage}/api/employee/${employeeId}`)
+		.then(res => {
+			dispatch({ type: FETCH_EMPLOYEE_SUCCESS });
+		})
+		.catch(err => {
+			dispatch({ type: FETCH_EMPLOYEE_FAILURE });
+		});
+};
+
+export const deleteEmployee = employeeId => dispatch => {
+	dispatch({ type: DELETE_EMPLOYEE_START });
+	return axios
+		.delete(`${envVarPage}/api/employee/${employeeId}`)
+		.then(res => {
+			dispatch({ type: DELETE_EMPLOYEE_SUCCESS });
+		})
+		.catch(err => {
+			dispatch({ type: DELETE_EMPLOYEE_FAILURE });
+		});
+};
