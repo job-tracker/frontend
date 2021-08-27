@@ -1,6 +1,9 @@
 import axios from 'axios';
 
-//
+// Login
+export const LOGIN_START = 'LOGIN_START';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
 // Employee
 export const FETCH_EMPLOYEE_START = 'FETCH_EMPLOYEE_START';
