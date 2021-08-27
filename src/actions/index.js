@@ -118,6 +118,8 @@ export const deleteUser = userId => dispatch => {
 
 // Jobsite
 
+// need to add post jobsite
+
 export const fetchJobsite = () => dispatch => {
 	dispatch({ type: FETCH_JOBSITE_START });
 	const jobsiteId = JSON.parse(localStorage.jobsite).id;
@@ -158,5 +160,56 @@ export const deleteJobsite = jobsiteId => dispatch => {
 		})
 		.catch(err => {
 			dispatch({ type: DELETE_JOBSITE_FAILURE });
+		});
+};
+
+// Building
+
+// need to add post building
+
+export const fetchBuilding = () => dispatch => {
+	dispatch({ type: FETCH_BUILDING_START });
+	const jobsiteId = JSON.parse(localStorage.jobsite).id;
+	return axios
+		.get(`${envVarPage}/api/user/jobsites/${jobsiteId}/buildings`)
+		.then(res => {
+			dispatch({ type: FETCH_BUILDING_SUCCESS });
+		})
+		.catch(err => {
+			dispatch({ type: FETCH_BUILDING_FAILURE });
+		});
+};
+
+export const updateBuilding = building => dispatch => {
+	dispatch({ type: UPDATE_JOBSITE_START });
+	const { jobsiteId } = JSON.parse(localStorage.jobsite);
+	const { buildingId } = JSON.parse(localStorage.building);
+	return axios({
+		method: 'put',
+		url: `${envVarPage}/api/user/jobsites/${jobsiteId}/buildings/${buildingId}`,
+		data: building,
+		headers: {
+			Authorization: localStorage.token,
+		},
+	})
+		.then(res => {
+			localStorage.setItem('building', JSON.stringify(res.data));
+			dispatch({ type: UPDATE_BUILDING_SUCCESS });
+		})
+		.catch(err => dispatch({ type: UPDATE_BUILDING_FAILURE }));
+};
+
+export const deleteBuilding = buildingId => dispatch => {
+	dispatch({ type: DELETE_BUILDING_START });
+	const jobsiteId = JSON.parse(localStorage.jobsite).id;
+	return axios
+		.delete(
+			`${envVarPage}/api/user/jobsites/${jobsiteId}/buildings/${buildingId}`
+		)
+		.then(res => {
+			dispatch({ type: DELETE_BUILDING_SUCCESS });
+		})
+		.catch(err => {
+			dispatch({ type: DELETE_BUILDING_FAILURE });
 		});
 };
