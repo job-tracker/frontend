@@ -216,11 +216,16 @@ export const deleteBuilding = buildingId => dispatch => {
 
 // Floor
 
+// add post floor
+
 export const fetchFloor = () => dispatch => {
 	dispatch({ type: FETCH_FLOOR_START });
 	const jobsiteId = JSON.parse(localStorage.jobsite).id;
+	const buildingId = JSON.parse(localStorage.building).id;
 	return axios
-		.get(`${envVarPage}/api/user/jobsites/${jobsiteId}/buildings/floors`)
+		.get(
+			`${envVarPage}/api/user/jobsites/${jobsiteId}/buildings/${buildingId}/floors`
+		)
 		.then(res => {
 			dispatch({ type: FETCH_FLOOR_SUCCESS });
 		})
@@ -262,5 +267,62 @@ export const deleteFloor = floorId => dispatch => {
 		})
 		.catch(err => {
 			dispatch({ type: DELETE_FLOOR_FAILURE });
+		});
+};
+
+// Unit
+
+export const fetchUnit = () => dispatch => {
+	dispatch({ type: FETCH_UNIT_START });
+	const jobsiteId = JSON.parse(localStorage.jobsite).id;
+	const buildingId = JSON.parse(localStorage.building).id;
+	const floorId = JSON.parse(localStorage.floor).id;
+	return axios
+		.get(
+			`${envVarPage}/api/user/jobsites/${jobsiteId}/buildings/${buildingId}/floors/${floorId}/units`
+		)
+		.then(res => {
+			dispatch({ type: FETCH_UNIT_SUCCESS });
+		})
+		.catch(err => {
+			dispatch({ type: FETCH_UNIT_FAILURE });
+		});
+};
+
+export const updateUnit = unit => dispatch => {
+	dispatch({ type: UPDATE_UNIT_START });
+	const { jobsiteId } = JSON.parse(localStorage.jobsite);
+	const { buildingId } = JSON.parse(localStorage.building);
+	const { floorId } = JSON.parse(localStorage.floor);
+	const { unitId } = JSON.parse(localStorage.unit);
+	return axios({
+		method: 'put',
+		url: `${envVarPage}/api/user/jobsites/${jobsiteId}/buildings/${buildingId}/floors/${floorId}/units/${unitId}`,
+		data: unit,
+		headers: {
+			Authorization: localStorage.token,
+		},
+	})
+		.then(res => {
+			localStorage.setItem('floor', JSON.stringify(res.data));
+			dispatch({ type: UPDATE_UNIT_SUCCESS });
+		})
+		.catch(err => dispatch({ type: UPDATE_UNIT_FAILURE }));
+};
+
+export const deleteUnit = unitId => dispatch => {
+	dispatch({ type: DELETE_UNIT_START });
+	const jobsiteId = JSON.parse(localStorage.jobsite).id;
+	const buildingId = JSON.parse(localStorage.building).id;
+	const floorId = JSON.parse(localStorage.floor).id;
+	return axios
+		.delete(
+			`${envVarPage}/api/user/jobsites/${jobsiteId}/buildings/${buildingId}/floors/${floorId}/units/${unitId}`
+		)
+		.then(res => {
+			dispatch({ type: DELETE_UNIT_SUCCESS });
+		})
+		.catch(err => {
+			dispatch({ type: DELETE_UNIT_FAILURE });
 		});
 };
