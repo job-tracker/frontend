@@ -115,3 +115,48 @@ export const deleteUser = userId => dispatch => {
 			dispatch({ type: DELETE_USER_FAILURE });
 		});
 };
+
+// Jobsite
+
+export const fetchJobsite = () => dispatch => {
+	dispatch({ type: FETCH_JOBSITE_START });
+	const jobsiteId = JSON.parse(localStorage.jobsite).id;
+	return axios
+		.get(`${envVarPage}/api/user/jobsites/${jobsiteId}`)
+		.then(res => {
+			dispatch({ type: FETCH_JOBSITE_SUCCESS });
+		})
+		.catch(err => {
+			dispatch({ type: FETCH_JOBSITE_FAILURE });
+		});
+};
+
+export const updateJobsite = jobsite => dispatch => {
+	dispatch({ type: UPDATE_JOBSITE_START });
+	const { jobsiteId } = JSON.parse(localStorage.jobsite);
+	return axios({
+		method: 'put',
+		url: `${envVarPage}/api/user/jobsites/${jobsiteId}`,
+		data: jobsite,
+		headers: {
+			Authorization: localStorage.token,
+		},
+	})
+		.then(res => {
+			localStorage.setItem('jobsite', JSON.stringify(res.data));
+			dispatch({ type: UPDATE_JOBSITE_SUCCESS });
+		})
+		.catch(err => dispatch({ type: UPDATE_JOBSITE_FAILURE }));
+};
+
+export const deleteJobsite = jobsiteId => dispatch => {
+	dispatch({ type: DELETE_JOBSITE_START });
+	return axios
+		.delete(`${envVarPage}/api/user/jobsites/${jobsiteId}`)
+		.then(res => {
+			dispatch({ type: DELETE_JOBSITE_SUCCESS });
+		})
+		.catch(err => {
+			dispatch({ type: DELETE_JOBSITE_FAILURE });
+		});
+};
