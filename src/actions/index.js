@@ -26,3 +26,6 @@ export const FETCH_FLOOR_FAILURE = 'FETCH_FLOOR_FAILURE';
 export const FETCH_UNIT_START = 'FETCH_UNIT_START';
 export const FETCH_UNIT_SUCCESS = 'FETCH_UNIT_SUCCESS';
 export const FETCH_UNIT_FAILURE = 'FETCH_UNIT_FAILURE';
+
+// Environment var
+const envVarPage = process.env.REACT_APP_BACKEND_BASE_URL;
