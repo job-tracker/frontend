@@ -13,16 +13,16 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 // Log out
 export const LOG_OUT = 'LOG_OUT';
 
-// Employee
-export const FETCH_EMPLOYEE_START = 'FETCH_EMPLOYEE_START';
-export const FETCH_EMPLOYEE_SUCCESS = 'FETCH_EMPLOYEE_SUCCESS';
-export const FETCH_EMPLOYEE_FAILURE = 'FETCH_EMPLOYEE_FAILURE';
-export const DELETE_EMPLOYEE_START = 'DELETE_EMPLOYEE_START';
-export const DELETE_EMPLOYEE_SUCCESS = 'DELETE_EMPLOYEE_SUCCESS';
-export const DELETE_EMPLOYEE_FAILURE = 'DELETE_EMPLOYEE_FAILURE';
-export const UPDATE_EMPLOYEE_START = 'UPDATE_EMPLOYEE_START';
-export const UPDATE_EMPLOYEE_SUCCESS = 'UPDATE_EMPLOYEE_SUCCESS';
-export const UPDATE_EMPLOYEE_FAILURE = 'UPDATE_EMPLOYEE_FAILURE';
+// User
+export const FETCH_USER_START = 'FETCH_USER_START';
+export const FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS';
+export const FETCH_USER_FAILURE = 'FETCH_USER_FAILURE';
+export const DELETE_USER_START = 'DELETE_USER_START';
+export const DELETE_USER_SUCCESS = 'DELETE_USER_SUCCESS';
+export const DELETE_USER_FAILURE = 'DELETE_USER_FAILURE';
+export const UPDATE_USER_START = 'UPDATE_USER_START';
+export const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';
+export const UPDATE_USER_FAILURE = 'UPDATE_USER_FAILURE';
 
 // Jobsite
 export const FETCH_JOBSITE_START = 'FETCH_JOBSITE_START';
@@ -71,29 +71,47 @@ export const UPDATE_UNIT_FAILURE = 'UPDATE_UNIT_FAILURE';
 // Environment var
 const envVarPage = process.env.REACT_APP_BACKEND_BASE_URL;
 
-// Functions for the actions
+// ACTIONS
 
-// Employee
-export const fetchEmployee = employeeId => dispatch => {
-	dispatch({ type: FETCH_EMPLOYEE_START });
+// User
+export const fetchUser = userId => dispatch => {
+	dispatch({ type: FETCH_USER_START });
 	return axios
-		.get(`${envVarPage}/api/employee/${employeeId}`)
+		.get(`${envVarPage}/api/user/${userId}`)
 		.then(res => {
-			dispatch({ type: FETCH_EMPLOYEE_SUCCESS });
+			dispatch({ type: FETCH_USER_SUCCESS });
 		})
 		.catch(err => {
-			dispatch({ type: FETCH_EMPLOYEE_FAILURE });
+			dispatch({ type: FETCH_USER_FAILURE });
 		});
 };
 
-export const deleteEmployee = employeeId => dispatch => {
-	dispatch({ type: DELETE_EMPLOYEE_START });
-	return axios
-		.delete(`${envVarPage}/api/employee/${employeeId}`)
+export const updateUser = user => dispatch => {
+	dispatch({ type: UPDATE_USER_START });
+	const { userId } = JSON.parse(localStorage.user);
+	return axios({
+		method: 'put',
+		url: `${envVarPage}/api/user/${userId}`,
+		data: user,
+		headers: {
+			Authorization: localStorage.token,
+		},
+	})
 		.then(res => {
-			dispatch({ type: DELETE_EMPLOYEE_SUCCESS });
+			localStorage.setItem('user', JSON.stringify(res.data));
+			dispatch({ type: UPDATE_USER_SUCCESS });
+		})
+		.catch(err => dispatch({ type: UPDATE_USER_FAILURE }));
+};
+
+export const deleteUser = userId => dispatch => {
+	dispatch({ type: DELETE_USER_START });
+	return axios
+		.delete(`${envVarPage}/api/user/${userId}`)
+		.then(res => {
+			dispatch({ type: DELETE_USER_SUCCESS });
 		})
 		.catch(err => {
-			dispatch({ type: DELETE_EMPLOYEE_FAILURE });
+			dispatch({ type: DELETE_USER_FAILURE });
 		});
 };
