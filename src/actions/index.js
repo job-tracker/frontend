@@ -1,5 +1,10 @@
 import axios from 'axios';
 
+// Sign up
+export const SIGNUP_START = 'SIGNUP_START';
+export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
+export const SIGNUP_FAILURE = 'SIGNUP_FAILURE';
+
 // Login
 export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
