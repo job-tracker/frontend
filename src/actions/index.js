@@ -67,6 +67,9 @@ export const UPDATE_FLOOR_SUCCESS = 'UPDATE_FLOOR_SUCCESS';
 export const UPDATE_FLOOR_FAILURE = 'UPDATE_FLOOR_FAILURE';
 
 // Unit
+export const POST_UNIT_START = 'POST_UNIT_START';
+export const POST_UNIT_SUCCESS = 'POST_UNIT_SUCCESS';
+export const POST_UNIT_FAILURE = 'POST_UNIT_FAILURE';
 export const FETCH_UNIT_START = 'FETCH_UNIT_START';
 export const FETCH_UNIT_SUCCESS = 'FETCH_UNIT_SUCCESS';
 export const FETCH_UNIT_FAILURE = 'FETCH_UNIT_FAILURE';
@@ -318,7 +321,22 @@ export const deleteFloor = floorId => dispatch => {
 		});
 };
 
-// Unit
+export const postUnit = unit => dispatch => {
+	dispatch({ type: POST_UNIT_START });
+	const { id } = JSON.parse(localStorage.user);
+	const jobId = JSON.parse(localStorage.jobsite).id;
+	const buildingId = JSON.parse(localStorage.building).id;
+	const floorId = JSON.parse(localStorage.floor).id;
+	return axios
+		.post(
+			`${envVarPage}/api/user/${id}/jobsites/${jobId}/buildings/${buildingId}/floors/${floorId}/units`,
+			unit
+		)
+		.then(res => {
+			dispatch({ type: POST_UNIT_SUCCESS });
+		})
+		.catch(err => dispatch({ type: POST_UNIT_FAILURE }));
+};
 
 export const fetchUnit = () => dispatch => {
 	dispatch({ type: FETCH_UNIT_START });
