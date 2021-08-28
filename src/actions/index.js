@@ -75,7 +75,10 @@ const envVarPage = process.env.REACT_APP_BACKEND_BASE_URL;
 
 // User
 
-// add post user
+// export const signUp = creds => dispatch => {
+// 	dispatch({ type: SIGNUP_START});
+// 	return axios.post()
+// }
 
 export const fetchUser = userId => dispatch => {
 	dispatch({ type: FETCH_USER_START });
