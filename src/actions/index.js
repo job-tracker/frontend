@@ -186,7 +186,17 @@ export const deleteJobsite = jobsiteId => dispatch => {
 
 // Building
 
-// need to add post building
+export const postBuilding = building => dispatch => {
+	dispatch({ type: POST_BUILDING_START });
+	const { id } = JSON.parse(localStorage.user);
+	const jobId = JSON.parse(localStorage.jobsite).id;
+	return axios
+		.post(`${envVarPage}/api/user/${id}/jobsites/${jobId}/buildings`, building)
+		.then(res => {
+			dispatch({ type: POST_BUILDING_SUCCESS });
+		})
+		.catch(err => dispatch({ type: POST_BUILDING_FAILURE }));
+};
 
 export const fetchBuilding = () => dispatch => {
 	dispatch({ type: FETCH_BUILDING_START });
