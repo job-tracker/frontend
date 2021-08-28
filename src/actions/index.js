@@ -127,7 +127,16 @@ export const deleteUser = userId => dispatch => {
 
 // Jobsite
 
-// need to add post jobsite
+export const postJobsite = jobsite => dispatch => {
+	dispatch({ type: POST_JOBSITE_START });
+	const { id } = JSON.parse(localStorage.user);
+	return axios
+		.post(`${envVarPage}/api/user/${id}`, jobsite)
+		.then(res => {
+			dispatch({ type: POST_JOBSITE_SUCCESS });
+		})
+		.catch(err => dispatch({ type: POST_JOBSITE_FAILURE }));
+};
 
 export const fetchJobsite = () => dispatch => {
 	dispatch({ type: FETCH_JOBSITE_START });
