@@ -250,7 +250,21 @@ export const deleteBuilding = buildingId => dispatch => {
 
 // Floor
 
-// add post floor
+export const postFloor = floor => dispatch => {
+	dispatch({ type: POST_FLOOR_START });
+	const { id } = JSON.parse(localStorage.user);
+	const jobId = JSON.parse(localStorage.jobsite).id;
+	const buildingId = JSON.parse(localStorage.building);
+	return axios
+		.post(
+			`${envVarPage}/api/user/${id}/jobsites/${jobId}/buildings/${buildingId}/floors`,
+			floor
+		)
+		.then(res => {
+			dispatch({ type: POST_FLOOR_SUCCESS });
+		})
+		.catch(err => dispatch({ type: POST_FLOOR_FAILURE }));
+};
 
 export const fetchFloor = () => dispatch => {
 	dispatch({ type: FETCH_FLOOR_START });
