@@ -74,7 +74,7 @@ export const jobsiteReducer = (state = initialState, action) => {
 			return {
 				...state,
 				isFetchingFloors: false,
-				jobsites: action.payload,
+				floors: action.payload,
 			};
 		case UPDATE_FLOOR_FAILURE:
 			return {
