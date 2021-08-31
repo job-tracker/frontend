@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { axios } from 'axios';
 
 // Sign up
 export const SIGNUP_START = 'SIGNUP_START';
