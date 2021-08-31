@@ -22,7 +22,7 @@ const initialState = {
 	error: '',
 };
 
-export const jobsiteReducer = (state = initialState, action) => {
+export const floorReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case POST_FLOOR_FAILURE:
 			return {

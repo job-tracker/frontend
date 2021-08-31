@@ -22,7 +22,7 @@ const initialState = {
 	error: '',
 };
 
-export const jobsiteReducer = (state = initialState, action) => {
+export const unitReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case POST_UNIT_FAILURE:
 			return {
