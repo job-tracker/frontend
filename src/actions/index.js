@@ -140,7 +140,7 @@ export const postJobsite = jobsite => dispatch => {
 	dispatch({ type: POST_JOBSITE_START });
 	const { id } = JSON.parse(localStorage.user);
 	return axios
-		.post(`${envVarPage}/api/user/${id}`, jobsite)
+		.post(`${envVarPage}/api/${id}`, jobsite)
 		.then(res => {
 			dispatch({ type: POST_JOBSITE_SUCCESS });
 		})
@@ -151,7 +151,7 @@ export const fetchJobsite = () => dispatch => {
 	dispatch({ type: FETCH_JOBSITE_START });
 	const jobsiteId = JSON.parse(localStorage.jobsite).id;
 	return axios
-		.get(`${envVarPage}/api/user/jobsites/${jobsiteId}`)
+		.get(`${envVarPage}/api/jobsites/${jobsiteId}`)
 		.then(res => {
 			dispatch({ type: FETCH_JOBSITE_SUCCESS });
 		})
@@ -165,7 +165,7 @@ export const updateJobsite = jobsite => dispatch => {
 	const { jobsiteId } = JSON.parse(localStorage.jobsite);
 	return axios({
 		method: 'put',
-		url: `${envVarPage}/api/user/jobsites/${jobsiteId}`,
+		url: `${envVarPage}/api/jobsites/${jobsiteId}`,
 		data: jobsite,
 		headers: {
 			Authorization: localStorage.token,
@@ -181,7 +181,7 @@ export const updateJobsite = jobsite => dispatch => {
 export const deleteJobsite = jobsiteId => dispatch => {
 	dispatch({ type: DELETE_JOBSITE_START });
 	return axios
-		.delete(`${envVarPage}/api/user/jobsites/${jobsiteId}`)
+		.delete(`${envVarPage}/api/jobsites/${jobsiteId}`)
 		.then(res => {
 			dispatch({ type: DELETE_JOBSITE_SUCCESS });
 		})
@@ -194,10 +194,10 @@ export const deleteJobsite = jobsiteId => dispatch => {
 
 export const postBuilding = building => dispatch => {
 	dispatch({ type: POST_BUILDING_START });
-	const { id } = JSON.parse(localStorage.user);
-	const jobId = JSON.parse(localStorage.jobsite).id;
+	// const { id } = JSON.parse(localStorage.user);
+	const jobsiteId = JSON.parse(localStorage.jobsite).id;
 	return axios
-		.post(`${envVarPage}/api/user/${id}/jobsites/${jobId}/buildings`, building)
+		.post(`${envVarPage}/api/jobsites/${jobsiteId}/buildings`, building)
 		.then(res => {
 			dispatch({ type: POST_BUILDING_SUCCESS });
 		})
@@ -208,9 +208,9 @@ export const fetchBuilding = () => dispatch => {
 	dispatch({ type: FETCH_BUILDING_START });
 	const jobsiteId = JSON.parse(localStorage.jobsite).id;
 	return axios
-		.get(`${envVarPage}/api/user/jobsites/${jobsiteId}/buildings`)
+		.get(`${envVarPage}/api/jobsites/${jobsiteId}/buildings`)
 		.then(res => {
-			dispatch({ type: FETCH_BUILDING_SUCCESS });
+			dispatch({ type: FETCH_BUILDING_SUCCESS, payload: res.data });
 		})
 		.catch(err => {
 			dispatch({ type: FETCH_BUILDING_FAILURE });
@@ -223,7 +223,7 @@ export const updateBuilding = building => dispatch => {
 	const { buildingId } = JSON.parse(localStorage.building);
 	return axios({
 		method: 'put',
-		url: `${envVarPage}/api/user/jobsites/${jobsiteId}/buildings/${buildingId}`,
+		url: `${envVarPage}/api/jobsites/${jobsiteId}/buildings/${buildingId}`,
 		data: building,
 		headers: {
 			Authorization: localStorage.token,
