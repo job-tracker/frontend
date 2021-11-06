@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import { Auth0Provider } from '@auth0/auth0-react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
@@ -13,18 +14,26 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+const domain = process.env.REACT_APP_AUTH0_DOMAIN;
+const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
+
 const store = createStore(
 	rootReducer,
 	composeWithDevTools(applyMiddleware(thunk))
 );
 
 ReactDOM.render(
-	<Provider store={store}>
-		<React.StrictMode>
-			<App />
-		</React.StrictMode>
-		,
-	</Provider>,
+	<Auth0Provider
+		domain={domain}
+		clientId={clientId}
+		redirectUri={window.location.origin}
+	>
+		<Provider store={store}>
+			<React.StrictMode>
+				<App />
+			</React.StrictMode>
+		</Provider>
+	</Auth0Provider>,
 	document.getElementById('root')
 );
 
