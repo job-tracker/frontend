@@ -15,10 +15,7 @@ import {
 
 const initialState = {
 	units: [],
-	isDeletingUnits: false,
-	isFetchingUnits: false,
-	isCreatingUnits: false,
-	isUpdatingUnits: false,
+	loading: false,
 	error: '',
 };
 
@@ -27,71 +24,71 @@ export const unitReducer = (state = initialState, action) => {
 		case POST_UNIT_FAILURE:
 			return {
 				...state,
-				isCreatingUnits: false,
+				loading: false,
 				error: action.payload,
 			};
 		case POST_UNIT_START:
 			return {
 				...state,
-				isCreatingUnits: true,
+				loading: true,
 				error: '',
 			};
 		case POST_UNIT_SUCCESS:
 			return {
 				...state,
-				isCreatingUnits: false,
+				loading: false,
 			};
 		case DELETE_UNIT_FAILURE:
 			return {
 				...state,
-				isDeletingUnits: false,
+				loading: false,
 				error: action.payload,
 			};
 		case DELETE_UNIT_START:
 			return {
 				...state,
-				isDeletingUnits: true,
+				loading: true,
 				error: '',
 			};
 		case DELETE_UNIT_SUCCESS:
 			return {
 				...state,
-				isDeletingUnits: false,
+				loading: false,
 			};
 		case FETCH_UNIT_FAILURE:
 			return {
 				...state,
-				isFetchingUnits: false,
+				loading: false,
 				error: action.payload,
 			};
 		case FETCH_UNIT_START:
 			return {
 				...state,
-				isFetchingUnits: true,
+				loading: true,
 				error: '',
 			};
 		case FETCH_UNIT_SUCCESS:
 			return {
 				...state,
-				isFetchingUnits: false,
+				loading: false,
 				units: action.payload,
 			};
 		case UPDATE_UNIT_FAILURE:
 			return {
 				...state,
-				isUpdatingUnits: false,
+				loading: false,
 				error: action.payload,
 			};
 		case UPDATE_UNIT_START:
 			return {
 				...state,
-				isUpdatingUnits: true,
+				loading: true,
 				error: '',
 			};
 		case UPDATE_UNIT_SUCCESS:
 			return {
 				...state,
-				isUpdatingUnits: false,
+				loading: false,
 			};
 		default:
 			return state;

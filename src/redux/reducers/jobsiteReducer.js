@@ -15,10 +15,7 @@ import {
 
 const initialState = {
 	jobsites: [],
-	isDeletingJobsites: false,
-	isFetchingJobsites: false,
-	isCreatingJobsites: false,
-	isUpdatingJobsites: false,
+	loading: false,
 	error: '',
 };
 
@@ -27,71 +24,71 @@ export const jobsiteReducer = (state = initialState, action) => {
 		case POST_JOBSITE_FAILURE:
 			return {
 				...state,
-				isCreatingJobsites: false,
+				loading: false,
 				error: action.payload,
 			};
 		case POST_JOBSITE_START:
 			return {
 				...state,
-				isCreatingJobsites: true,
+				loading: true,
 				error: '',
 			};
 		case POST_JOBSITE_SUCCESS:
 			return {
 				...state,
-				isCreatingJobsites: false,
+				loading: false,
 			};
 		case DELETE_JOBSITE_FAILURE:
 			return {
 				...state,
-				isDeletingJobsites: false,
+				loading: false,
 				error: action.payload,
 			};
 		case DELETE_JOBSITE_START:
 			return {
 				...state,
-				isDeletingJobsites: true,
+				loading: true,
 				error: '',
 			};
 		case DELETE_JOBSITE_SUCCESS:
 			return {
 				...state,
-				isDeletingJobsites: false,
+				loading: false,
 			};
 		case FETCH_JOBSITE_FAILURE:
 			return {
 				...state,
-				isFetchingJobsites: false,
+				loading: false,
 				error: action.payload,
 			};
 		case FETCH_JOBSITE_START:
 			return {
 				...state,
-				isFetchingJobsites: true,
+				loading: true,
 				error: '',
 			};
 		case FETCH_JOBSITE_SUCCESS:
 			return {
 				...state,
-				isFetchingJobsites: false,
+				loading: false,
 				jobsites: action.payload,
 			};
 		case UPDATE_JOBSITE_FAILURE:
 			return {
 				...state,
-				isUpdatingJobsites: false,
+				loading: false,
 				error: action.payload,
 			};
 		case UPDATE_JOBSITE_START:
 			return {
 				...state,
-				isUpdatingJobsites: true,
+				loading: true,
 				error: '',
 			};
 		case UPDATE_JOBSITE_SUCCESS:
 			return {
 				...state,
-				isUpdatingJobsites: false,
+				loading: false,
 			};
 		default:
 			return state;

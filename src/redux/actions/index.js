@@ -87,21 +87,31 @@ const envVarPage = process.env.REACT_APP_BACKEND_BASE_URL;
 
 // User
 
-// export const signUp = creds => dispatch => {
-// 	dispatch({ type: SIGNUP_START});
-// 	return axios.post()
-// }
+export const login = userId => dispatch => {
+	dispatch({ type: LOGIN_START });
+	return axios.get(`${envVarPage}/api/users/${userId}`).then(res => {
+		localStorage.setItem('user', JSON.stringify(res.data));
+		dispatch({
+			type: LOGIN_SUCCESS,
+			payload: res.data,
+		}).catch(err => dispatch({ type: LOGIN_FAILURE }));
+	});
+};
 
-export const fetchUser = userId => dispatch => {
-	dispatch({ type: FETCH_USER_START });
-	return axios
-		.get(`${envVarPage}/api/user/${userId}`)
-		.then(res => {
-			dispatch({ type: FETCH_USER_SUCCESS });
-		})
-		.catch(err => {
-			dispatch({ type: FETCH_USER_FAILURE });
-		});
+export const fetchUser = () => dispatch => {
+	return dispatch => {
+		dispatch({ type: LOGIN_START });
+		axios
+			.get('http://localhost:5000/api/users')
+			.then(res => {
+				const users = res.data;
+				dispatch({ type: LOGIN_SUCCESS, payload: users });
+			})
+			.catch(err => {
+				const errorMsg = err.message;
+				dispatch({ type: LOGIN_FAILURE, payload: errorMsg });
+			});
+	};
 };
 
 export const updateUser = user => dispatch => {
@@ -109,7 +119,7 @@ export const updateUser = user => dispatch => {
 	const { userId } = JSON.parse(localStorage.user);
 	return axios({
 		method: 'put',
-		url: `${envVarPage}/api/user/${userId}`,
+		url: `${envVarPage}/api/users/${userId}`,
 		data: user,
 		headers: {
 			Authorization: localStorage.token,
@@ -125,7 +135,7 @@ export const updateUser = user => dispatch => {
 export const deleteUser = userId => dispatch => {
 	dispatch({ type: DELETE_USER_START });
 	return axios
-		.delete(`${envVarPage}/api/user/${userId}`)
+		.delete(`${envVarPage}/api/users/${userId}`)
 		.then(res => {
 			dispatch({ type: DELETE_USER_SUCCESS });
 		})
@@ -204,17 +214,52 @@ export const postBuilding = building => dispatch => {
 		.catch(err => dispatch({ type: POST_BUILDING_FAILURE }));
 };
 
-export const fetchBuilding = () => dispatch => {
-	dispatch({ type: FETCH_BUILDING_START });
-	const jobsiteId = JSON.parse(localStorage.jobsite).id;
-	return axios
-		.get(`${envVarPage}/api/jobsites/${jobsiteId}/buildings`)
-		.then(res => {
-			dispatch({ type: FETCH_BUILDING_SUCCESS, payload: res.data });
-		})
-		.catch(err => {
-			dispatch({ type: FETCH_BUILDING_FAILURE });
-		});
+// export const fetchBuilding = () => dispatch => {
+// 	dispatch({ type: FETCH_BUILDING_START });
+// 	const jobsiteId = JSON.parse(localStorage.jobsite).id;
+// 	return axios
+// 		.get(`${envVarPage}/api/jobsites/${jobsiteId}/buildings`)
+// 		.then(res => {
+// 			dispatch({ type: FETCH_BUILDING_SUCCESS, payload: res.data });
+// 		})
+// 		.catch(err => {
+// 			dispatch({ type: FETCH_BUILDING_FAILURE });
+// 		});
+// };
+
+export const fetchBuildingRequest = () => {
+	return {
+		type: FETCH_BUILDING_START,
+	};
+};
+
+export const fetchBuildingSuccess = buildings => {
+	return {
+		type: FETCH_BUILDING_SUCCESS,
+		payload: buildings,
+	};
+};
+
+export const fetchBuildingFailure = error => {
+	return {
+		type: FETCH_BUILDING_SUCCESS,
+		payload: error,
+	};
+};
+
+export const fetchBuildings = () => {
+	return dispatch => {
+		dispatch(fetchBuildingRequest());
+		axios
+			.get('https://jsonplaceholder.typicode.com/users')
+			.then(res => {
+				const buildings = res.data;
+				dispatch(fetchBuildingSuccess(buildings));
+			})
+			.catch(err => {
+				dispatch(fetchBuildingFailure(err));
+			});
+	};
 };
 
 export const updateBuilding = building => dispatch => {

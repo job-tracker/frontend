@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { fetchBuildings } from '../../../redux/actions';
 
 import { Table } from 'reactstrap';
 
 import './BuildingList.scss';
 
-import { fetchBuilding } from '../../../actions';
-
 import ListHeader from '../../ListComponents/ListHeader/ListHeader.js';
 import Building from '../../BuildingComponents/Building.js';
 
-const BuildingList = () => {
-	const [buildingList, setBuildingList] = useState(fetchBuilding);
+const BuildingList = ({ buildingData, fetchBuildings }) => {
+	useEffect(() => {
+		fetchBuildings();
+	}, []);
 	return (
 		<section className="building-list-wrapper">
 			<div className="building-list-header">
@@ -20,14 +21,11 @@ const BuildingList = () => {
 			<div className="building-list-wrapper">
 				<Table dark hover responsive className="building-table">
 					<tbody>
-						{
-							(console.log(buildingList),
-							buildingList.map((building, i) => (
-								<tr key={i}>
-									<Building name={building.name} />
-								</tr>
-							)))
-						}
+						{buildingData.buildings.map((building, i) => (
+							<tr key={i}>
+								<Building name={building.name} />
+							</tr>
+						))}
 					</tbody>
 				</Table>
 			</div>
@@ -35,10 +33,16 @@ const BuildingList = () => {
 	);
 };
 
-const mapStateToProps = state => ({
-	buildings: state.buildingReducer.buildings,
-});
+const mapStateToProps = state => {
+	return {
+		buildingData: state.buildings,
+	};
+};
 
-export default connect(mapStateToProps, {
-	fetchBuilding,
-})(BuildingList);
+const mapDispatchToProps = dispatch => {
+	return {
+		fetchBuildings: () => dispatch(fetchBuildings()),
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(BuildingList);

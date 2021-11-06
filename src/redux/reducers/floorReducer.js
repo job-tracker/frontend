@@ -15,10 +15,7 @@ import {
 
 const initialState = {
 	floors: [],
-	isDeletingFloors: false,
-	isFetchingFloors: false,
-	isCreatingFloors: false,
-	isUpdatingFloors: false,
+	loading: false,
 	error: '',
 };
 
@@ -27,13 +24,13 @@ export const floorReducer = (state = initialState, action) => {
 		case POST_FLOOR_FAILURE:
 			return {
 				...state,
-				isCreatingFloors: false,
+				loading: false,
 				error: action.payload,
 			};
 		case POST_FLOOR_START:
 			return {
 				...state,
-				isCreatingFloors: true,
+				loading: true,
 				error: '',
 			};
 		case POST_FLOOR_SUCCESS:
@@ -44,54 +41,54 @@ export const floorReducer = (state = initialState, action) => {
 		case DELETE_FLOOR_FAILURE:
 			return {
 				...state,
-				isDeletingFloors: false,
+				loading: false,
 				error: action.payload,
 			};
 		case DELETE_FLOOR_START:
 			return {
 				...state,
-				isDeletingFloors: true,
+				loading: true,
 				error: '',
 			};
 		case DELETE_FLOOR_SUCCESS:
 			return {
 				...state,
-				isDeletingFloors: false,
+				loading: false,
 			};
 		case FETCH_FLOOR_FAILURE:
 			return {
 				...state,
-				isFetchingFloors: false,
+				loading: false,
 				error: action.payload,
 			};
 		case FETCH_FLOOR_START:
 			return {
 				...state,
-				isFetchingFloors: true,
+				loading: true,
 				error: '',
 			};
 		case FETCH_FLOOR_SUCCESS:
 			return {
 				...state,
-				isFetchingFloors: false,
+				loading: false,
 				floors: action.payload,
 			};
 		case UPDATE_FLOOR_FAILURE:
 			return {
 				...state,
-				isUpdatingFloors: false,
+				loading: false,
 				error: action.payload,
 			};
 		case UPDATE_FLOOR_START:
 			return {
 				...state,
-				isUpdatingFloors: true,
+				loading: true,
 				error: '',
 			};
 		case UPDATE_FLOOR_SUCCESS:
 			return {
 				...state,
-				isUpdatingFloors: false,
+				loading: false,
 			};
 		default:
 			return state;

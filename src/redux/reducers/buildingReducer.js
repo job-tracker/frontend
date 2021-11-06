@@ -15,10 +15,7 @@ import {
 
 const initialState = {
 	buildings: [],
-	isDeletingBuildings: false,
-	isFetchingBuildings: false,
-	isCreatingBuildings: false,
-	isUpdatingBuildings: false,
+	loading: false,
 	error: '',
 };
 
@@ -27,71 +24,71 @@ export const buildingReducer = (state = initialState, action) => {
 		case POST_BUILDING_FAILURE:
 			return {
 				...state,
-				isCreatingBuildings: false,
+				loading: false,
 				error: action.payload,
 			};
 		case POST_BUILDING_START:
 			return {
 				...state,
-				isCreatingBuildings: true,
+				loading: true,
 				error: '',
 			};
 		case POST_BUILDING_SUCCESS:
 			return {
 				...state,
-				isCreatingBuildings: false,
+				loading: false,
 			};
 		case DELETE_BUILDING_FAILURE:
 			return {
 				...state,
-				isDeletingBuildings: false,
+				loading: false,
 				error: action.payload,
 			};
 		case DELETE_BUILDING_START:
 			return {
 				...state,
-				isDeletingBuildings: true,
+				loading: true,
 				error: '',
 			};
 		case DELETE_BUILDING_SUCCESS:
 			return {
 				...state,
-				isDeletingBuildings: false,
+				loading: false,
 			};
 		case FETCH_BUILDING_FAILURE:
 			return {
 				...state,
-				isFetchingBuildings: false,
+				loading: false,
 				error: action.payload,
 			};
 		case FETCH_BUILDING_START:
 			return {
 				...state,
-				isFetchingBuildings: true,
+				loading: true,
 				error: '',
 			};
 		case FETCH_BUILDING_SUCCESS:
 			return {
 				...state,
-				isFetchingBuildings: false,
+				loading: false,
 				buildings: action.payload,
 			};
 		case UPDATE_BUILDING_FAILURE:
 			return {
 				...state,
-				isUpdatingBuildings: false,
+				loading: false,
 				error: action.payload,
 			};
 		case UPDATE_BUILDING_START:
 			return {
 				...state,
-				isUpdatingBuildings: true,
+				loading: true,
 				error: '',
 			};
 		case UPDATE_BUILDING_SUCCESS:
 			return {
 				...state,
-				isUpdatingBuildings: false,
+				loading: false,
 			};
 		default:
 			return state;
