@@ -1,11 +1,15 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchAuthUser } from '../../redux';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const AuthUserView = ({ userData, fetchAuthUser }) => {
 	useEffect(() => {
 		fetchAuthUser();
 	}, []);
+
+	const { user, isAuthenticated } = useAuth0;
+
 	return userData.loading ? (
 		<h2>Loading...</h2>
 	) : userData.error ? (
